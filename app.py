@@ -1,34 +1,22 @@
-from flask import Flask, jsonify
+from flask import Flask, render_template, jsonify
 from flask_sqlalchemy import SQLAlchemy
 import os
 
 app = Flask(__name__)
 
-# Configuración para que el JSON se vea ordenado
-app.config['JSON_SORT_KEYS'] = False
-
-# --- CONFIGURACIÓN DE CONEXIÓN (Cámbialo por tus datos de TiDB) ---
+# --- CONFIGURACIÓN ---
 USER = "4PdfpZzDzZDR2Ds.root"
 PASS = "MHgBPuCbpoq8u853"
 HOST = "gateway01.us-east-1.prod.aws.tidbcloud.com"
 DB_NAME = "gym_db"
 
-# 1. La URL de conexión base
 app.config['SQLALCHEMY_DATABASE_URI'] = f'mysql+pymysql://{USER}:{PASS}@{HOST}:4000/{DB_NAME}'
-
-# 2. EL PARCHE DE SEGURIDAD (SSL): Esto soluciona el error OperationalError
-app.config['SQLALCHEMY_ENGINE_OPTIONS'] = {
-    "connect_args": {
-        "ssl": {
-            "ca": "/etc/ssl/certs/ca-certificates.crt"
-        }
-    }
-}
-
+app.config['SQLALCHEMY_ENGINE_OPTIONS'] = {"connect_args": {"ssl": {"ca": "/etc/ssl/certs/ca-certificates.crt"}}}
 app.config['SQLALCHEMY_TRACK_MODIFICATIONS'] = False
+
 db = SQLAlchemy(app)
 
-# --- MODELO ---
+# --- MODELOS ---
 class Socio(db.Model):
     __tablename__ = 'Socio'
     idSocio = db.Column(db.Integer, primary_key=True)
@@ -38,22 +26,12 @@ class Socio(db.Model):
 # --- RUTAS ---
 @app.route('/')
 def index():
-    return jsonify({
-        "status": "Online",
-        "message": "API del Gimnasio funcionando con SSL",
-        "endpoints": ["/socios"]
-    })
+    return render_template('index.html')
 
-@app.route('/socios', methods=['GET'])
-def get_socios():
-    try:
-        socios = Socio.query.all()
-        return jsonify([
-            {"id": s.idSocio, "nombre": s.nombre, "email": s.correo} 
-            for s in socios
-        ])
-    except Exception as e:
-        return jsonify({"error": str(e)}), 500
+@app.route('/socios')
+def ver_socios():
+    lista_socios = Socio.query.all()
+    return render_template('socios.html', socios=lista_socios)
 
 if __name__ == "__main__":
     port = int(os.environ.get("PORT", 5000))
