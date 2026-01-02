@@ -3,61 +3,61 @@
 <head>
     <meta charset="UTF-8">
     <link rel="stylesheet" href="{{ url_for('static', filename='css/estilo.css') }}">
-    <title>Lista de Socios</title>
+    <title>Gestión de Socios</title>
+    <style>
+        table { width: 100%; border-collapse: separate; border-spacing: 0 12px; }
+        th, td { padding: 18px 25px !important; text-align: left; }
+        .form-container { background: #1c1c1c; padding: 20px; border-radius: 15px; border: 1px solid #ffc107; margin-bottom: 30px; }
+        input { padding: 10px; margin: 5px; border-radius: 5px; border: 1px solid #ffc107; background: #222; color: white; }
+    </style>
 </head>
-<body>
-    <nav style="background-color: #ffc107; width: 100%; padding: 15px 0; border-bottom: 3px solid #000; display: flex; justify-content: space-around; align-items: center; margin: 0;">
-    <div style="color: #000; font-weight: bold; font-size: 1.2rem;">Panel del Sistema del Gimnasio</div>
-    <div style="display: flex; gap: 20px;">
-        <a href="/" style="color: #000; text-decoration: none; font-weight: bold;">Inicio</a>
-        <a href="/socios" style="color: #000; text-decoration: none; font-weight: bold;">Socios</a>
-        <a href="/membresias" style="color: #000; text-decoration: none; font-weight: bold;">Membresías</a>
-        <span style="color: #000; font-weight: bold; opacity: 0.7;">Cerrar sesión</span>
-    </div>
-</nav>
-    <div class="container">
-        <h2>👥 Listado de Socios (Desde ORM)</h2>
-        <a href="/" class="btn-dark" style="padding: 10px; text-decoration: none; border-radius: 5px;">Ir al Inicio</a>
-        <br><br>
-    <div style="background: #1c1c1c; padding: 20px; border-radius: 15px; border: 1px solid #ffc107; margin-bottom: 30px;">
-        <h3 style="color: #ffc107; margin-top: 0;">+ Registrar Nuevo Socio</h3>
-        <form action="/agregar_socio" method="POST">
-            <input type="text" name="nombre" placeholder="Nombre" required>
-            <input type="email" name="correo" placeholder="Email" required>
-            <input type="text" name="telefono" placeholder="Teléfono">
-            <input type="number" name="edad" placeholder="Edad" style="width: 80px;">
-            <button type="submit" style="background: #ffc107; color: black; font-weight: bold; border: none; padding: 10px 20px; border-radius: 5px; cursor: pointer;">Guardar</button>
-        </form>
-    </div>
-        <table class="table" width="100%">
- <thead>
-    <tr>
-        <th>ID</th>
-        <th>Nombre</th>
-        <th>Correo</th>
-        <th>Teléfono</th>
-        <th>Edad</th>
-        <th>Inscripción</th>
-    </tr>
-</thead>            
-<tbody>
-    {% for s in socios %}
-    <tr>
-        <td>{{ s.idSocio }}</td>
-        <td>{{ s.nombre }}</td>
-        <td>{{ s.correo }}</td>
-        <td>{{ s.telefono }}</td>
-        <td>{{ s.edad }}</td>
-        <td>{{ s.fecha_inscripcion }}</td>
-    </tr>
-    {% endfor %}
-</tbody>
+<body style="margin: 0; background-color: #121212; color: white; font-family: sans-serif;">
+
+    <nav style="background-color: #ffc107; width: 100%; padding: 15px 0; border-bottom: 3px solid #000; display: flex; justify-content: space-around; align-items: center;">
+        <div style="color: #000; font-weight: bold; font-size: 1.2rem;">Panel del Sistema del Gimnasio</div>
+        <div style="display: flex; gap: 20px;">
+            <a href="/" style="color: #000; text-decoration: none; font-weight: bold;">Inicio</a>
+            <a href="/socios" style="color: #000; text-decoration: none; font-weight: bold;">Socios</a>
+            <a href="/membresias" style="color: #000; text-decoration: none; font-weight: bold;">Membresías</a>
+        </div>
+    </nav>
+
+    <div style="max-width: 1100px; margin: 40px auto; padding: 0 20px;">
+        <h1 style="color: #ffc107;">👥 Gestión de Socios</h1>
+
+        <div class="form-container">
+            <h3 style="color: #ffc107; margin-top: 0;">+ Registrar Nuevo Socio</h3>
+            <form action="/agregar_socio" method="POST">
+                <input type="text" name="nombre" placeholder="Nombre completo" required>
+                <input type="email" name="correo" placeholder="Correo" required>
+                <input type="text" name="telefono" placeholder="Teléfono">
+                <input type="number" name="edad" placeholder="Edad" style="width: 70px;">
+                <button type="submit" style="background: #ffc107; color: black; font-weight: bold; border: none; padding: 10px 20px; border-radius: 5px; cursor: pointer;">Guardar</button>
+            </form>
+        </div>
+
+        <table>
+            <thead>
+                <tr style="color: #ffc107; text-transform: uppercase; font-size: 0.8rem;">
+                    <th>ID</th>
+                    <th>Nombre</th>
+                    <th>Correo</th>
+                    <th>Teléfono</th>
+                    <th>Edad</th>
+                    <th>Acciones</th>
+                </tr>
+            </thead>
             <tbody>
-                {% for socio in socios %}
-                <tr>
-                    <td>{{ socio.idSocio }}</td>
-                    <td>{{ socio.nombre }}</td>
-                    <td>{{ socio.correo }}</td>
+                {% for s in socios %}
+                <tr style="background-color: #1c1c1c;">
+                    <td style="border-radius: 15px 0 0 15px;">{{ s.idSocio }}</td>
+                    <td style="font-weight: bold;">{{ s.nombre }}</td>
+                    <td>{{ s.correo }}</td>
+                    <td>{{ s.telefono }}</td>
+                    <td>{{ s.edad }}</td>
+                    <td style="border-radius: 0 15px 15px 0;">
+                        <a href="/eliminar_socio/{{ s.idSocio }}" onclick="return confirm('¿Eliminar socio?')" style="color: #ff4d4d; text-decoration: none; font-weight: bold;">Eliminar</a>
+                    </td>
                 </tr>
                 {% endfor %}
             </tbody>
