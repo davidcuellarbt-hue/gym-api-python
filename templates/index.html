@@ -1,0 +1,24 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <title>Panel Gym - Python</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/estilo.css') }}">
+</head>
+<body>
+    <div class="container">
+        <h1 class="title">🏋️ Panel del Gimnasio (ORM Python)</h1>
+        <section class="cards" style="display: grid; grid-template-columns: repeat(2, 1fr); gap: 20px;">
+            <a class="card" href="/socios" style="text-decoration: none; background: #1c1c1c; padding: 20px; border-radius: 12px; border: 1px solid #ffc107;">
+                <h3>👥 Socios</h3>
+                <p>Ver lista desde base de datos</p>
+            </a>
+            <div class="card" style="opacity: 0.5; background: #1c1c1c; padding: 20px; border-radius: 12px; border: 1px solid #444;">
+                <h3>💳 Membresías</h3>
+                <p>(Próximamente)</p>
+            </div>
+        </section>
+    </div>
+    <footer>© 2024 Gimnasio Pro - Python & TiDB</footer>
+</body>
+</html>
