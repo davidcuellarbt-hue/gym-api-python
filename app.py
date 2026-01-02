@@ -5,9 +5,9 @@ import os
 app = Flask(__name__)
 
 # --- CONFIGURACIÓN DE CONEXIÓN ---
-USER = "TU_USUARIO"
-PASS = "TU_PASSWORD"
-HOST = "TU_HOST"
+USER = "4PdfpZzDzZDR2Ds.root"
+PASS = "MHgBPuCbpoq8u853"
+HOST = "gateway01.us-east-1.prod.aws.tidbcloud.com"
 DB_NAME = "gym_db"
 
 app.config['SQLALCHEMY_DATABASE_URI'] = f'mysql+pymysql://{USER}:{PASS}@{HOST}:4000/{DB_NAME}'
@@ -54,3 +54,4 @@ def ver_membresias():
 if __name__ == "__main__":
     port = int(os.environ.get("PORT", 5000))
     app.run(host='0.0.0.0', port=port)
+
