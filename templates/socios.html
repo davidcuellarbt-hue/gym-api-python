@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/estilo.css') }}">
+    <title>Lista de Socios</title>
+</head>
+<body>
+    <div class="container">
+        <h2>👥 Listado de Socios (Desde ORM)</h2>
+        <a href="/" class="btn-dark" style="padding: 10px; text-decoration: none; border-radius: 5px;">Ir al Inicio</a>
+        <br><br>
+        <table class="table" width="100%">
+            <thead>
+                <tr>
+                    <th>ID</th>
+                    <th>Nombre</th>
+                    <th>Correo</th>
+                </tr>
+            </thead>
+            <tbody>
+                {% for socio in socios %}
+                <tr>
+                    <td>{{ socio.idSocio }}</td>
+                    <td>{{ socio.nombre }}</td>
+                    <td>{{ socio.correo }}</td>
+                </tr>
+                {% endfor %}
+            </tbody>
+        </table>
+    </div>
+</body>
+</html>
