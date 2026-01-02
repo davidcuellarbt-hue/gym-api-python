@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/estilo.css') }}">
+    <title>Membresías</title>
+</head>
+<body>
+    <nav class="navbar" style="display: flex; justify-content: space-between; align-items: center; padding: 15px 50px; background: #000; border-bottom: 2px solid #ffc107;">
+        <div class="navbar-brand" style="color: #ffc107;">Panel del Sistema del Gimnasio</div>
+        <div class="nav-links">
+            <a href="/" style="color: #ccc; text-decoration: none; margin-right: 15px;">Inicio</a>
+            <a href="/membresias" style="color: #ffc107; text-decoration: none;">Membresías</a>
+        </div>
+    </nav>
+
+    <div class="container" style="max-width: 900px; margin: auto;">
+        <h1 style="text-align: center; color: #ffc107; margin-top: 30px;">Membresías</h1>
+        
+        <div style="margin-bottom: 20px;">
+            <button class="btn-dark" style="padding: 10px 20px; border-radius: 8px;">+ Nueva Membresía</button>
+        </div>
+
+        <table class="table" style="width: 100%; border-collapse: separate; border-spacing: 0 10px;">
+            <thead style="text-align: left;">
+                <tr style="color: #ffc107; text-transform: uppercase; font-size: 12px;">
+                    <th style="padding: 15px;">ID</th>
+                    <th>Tipo de Plan</th>
+                    <th>Costo</th>
+                    <th>Acciones</th>
+                </tr>
+            </thead>
+            <tbody style="background: #1c1c1c;">
+                {% for m in membresias %}
+                <tr style="border-radius: 10px;">
+                    <td style="padding: 15px; border-top-left-radius: 10px; border-bottom-left-radius: 10px;">{{ m.idMembresia }}</td>
+                    <td style="font-weight: bold;">{{ m.tipo }}</td>
+                    <td>${{ m.costo }}</td>
+                    <td style="border-top-right-radius: 10px; border-bottom-right-radius: 10px;">
+                        <span style="color: #5d5dff; cursor: pointer;">Editar</span> | 
+                        <span style="color: #ff4d4d; cursor: pointer;">Eliminar</span>
+                    </td>
+                </tr>
+                {% endfor %}
+            </tbody>
+        </table>
+    </div>
+    <footer style="position: fixed; bottom: 0; width: 100%;">© 2025 Proyecto Base de Datos hecho por Teo xd</footer>
+</body>
+</html>
