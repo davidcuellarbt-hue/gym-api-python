@@ -3,42 +3,51 @@
 <head>
     <meta charset="UTF-8">
     <link rel="stylesheet" href="{{ url_for('static', filename='css/estilo.css') }}">
-    <title>Membresías</title>
+    <title>Membresías - Gym</title>
 </head>
-<body>
-    <nav style="background-color: #ffc107; width: 100%; padding: 15px 0; border-bottom: 3px solid #000; display: flex; justify-content: space-around; align-items: center; margin: 0;">
-    <div style="color: #000; font-weight: bold; font-size: 1.2rem;">Panel del Sistema del Gimnasio</div>
-    <div style="display: flex; gap: 20px;">
-        <a href="/" style="color: #000; text-decoration: none; font-weight: bold;">Inicio</a>
-        <a href="/socios" style="color: #000; text-decoration: none; font-weight: bold;">Socios</a>
-        <a href="/membresias" style="color: #000; text-decoration: none; font-weight: bold;">Membresías</a>
-        <span style="color: #000; font-weight: bold; opacity: 0.7;">Cerrar sesión</span>
-    </div>
-</nav>
+<body style="margin: 0; background-color: #121212; color: white; font-family: sans-serif;">
 
-    <div class="container" style="max-width: 900px; margin: auto;">
-        <h1 style="text-align: center; color: #ffc107; margin-top: 30px;">Membresías</h1>
+    <nav style="background-color: #ffc107; width: 100%; padding: 15px 0; border-bottom: 3px solid #000; display: flex; justify-content: space-around; align-items: center;">
+        <div style="color: #000; font-weight: bold; font-size: 1.2rem;">Panel del Sistema del Gimnasio</div>
+        <div style="display: flex; gap: 20px;">
+            <a href="/" style="color: #000; text-decoration: none; font-weight: bold;">Inicio</a>
+            <a href="/socios" style="color: #000; text-decoration: none; font-weight: bold;">Socios</a>
+            <a href="/membresias" style="color: #000; text-decoration: none; font-weight: bold;">Membresías</a>
+            <span style="color: #d32f2f; font-weight: bold; cursor: pointer;">Cerrar sesión</span>
+        </div>
+    </nav>
+
+    <div style="max-width: 1000px; margin: 40px auto; padding: 0 20px;">
+        <h1 style="text-align: center; color: #ffc107; font-size: 2.5rem; margin-bottom: 30px;">Membresías</h1>
         
         <div style="margin-bottom: 20px;">
-            <button class="btn-dark" style="padding: 10px 20px; border-radius: 8px;">+ Nueva Membresía</button>
+            <button style="background-color: #1c1c1c; color: white; border: 1px solid #333; padding: 12px 20px; border-radius: 10px; cursor: pointer; font-weight: bold;">
+                + Nueva Membresía
+            </button>
         </div>
 
-        <table class="table" style="width: 100%; border-collapse: separate; border-spacing: 0 10px;">
-            <thead style="text-align: left;">
-                <tr style="color: #ffc107; text-transform: uppercase; font-size: 12px;">
-                    <th style="padding: 15px;">ID</th>
-                    <th>Tipo de Plan</th>
+        <table style="width: 100%; border-collapse: separate; border-spacing: 0 15px;">
+            <thead>
+                <tr style="color: #ffc107; text-align: left; text-transform: uppercase; font-size: 0.8rem;">
+                    <th style="padding: 10px;">ID</th>
+                    <th>ID Socio</th>
+                    <th>Tipo</th>
                     <th>Costo</th>
+                    <th>Fecha Inicio</th>
+                    <th>Fecha Fin</th>
                     <th>Acciones</th>
                 </tr>
             </thead>
-            <tbody style="background: #1c1c1c;">
+            <tbody>
                 {% for m in membresias %}
-                <tr style="border-radius: 10px;">
-                    <td style="padding: 15px; border-top-left-radius: 10px; border-bottom-left-radius: 10px;">{{ m.idMembresia }}</td>
-                    <td style="font-weight: bold;">{{ m.tipo }}</td>
-                    <td>${{ m.costo }}</td>
-                    <td style="border-top-right-radius: 10px; border-bottom-right-radius: 10px;">
+                <tr style="background-color: #1c1c1c; border-radius: 15px;">
+                    <td style="padding: 20px; border-radius: 15px 0 0 15px;">{{ m.idMembresia }}</td>
+                    <td style="font-weight: bold;">{{ m.idSocio }}</td>
+                    <td><span style="background: #333; padding: 5px 10px; border-radius: 5px;">{{ m.tipo }}</span></td>
+                    <td style="color: #ffc107; font-weight: bold;">${{ m.costo }}</td>
+                    <td>{{ m.fecha_inicio }}</td>
+                    <td>{{ m.fecha_fin }}</td>
+                    <td style="border-radius: 0 15px 15px 0;">
                         <span style="color: #5d5dff; cursor: pointer;">Editar</span> | 
                         <span style="color: #ff4d4d; cursor: pointer;">Eliminar</span>
                     </td>
@@ -47,6 +56,9 @@
             </tbody>
         </table>
     </div>
-    <footer style="position: fixed; bottom: 0; width: 100%;">© 2025 Proyecto Base de Datos hecho por Teo xd</footer>
+
+    <footer style="text-align: center; padding: 20px; color: #666; font-size: 0.9rem;">
+        © 2025 Proyecto Base de Datos hecho por Teo xd
+    </footer>
 </body>
 </html>
