@@ -7,7 +7,7 @@
     <style>
         table { width: 100%; border-collapse: separate; border-spacing: 0 12px; }
         th, td { padding: 18px 25px !important; text-align: left; }
-        .form-container { background: #1c1c1c; padding: 20px; border-radius: 15px; border: 1px solid #ffc107; margin-bottom: 30px; }
+        .form-container { background: #1c1c1c; padding: 25px; border-radius: 15px; border: 1px solid #ffc107; margin-bottom: 30px; }
         input, select { padding: 10px; margin: 5px; border-radius: 5px; border: 1px solid #ffc107; background: #222; color: white; }
     </style>
 </head>
@@ -27,16 +27,21 @@
 
         <div class="form-container">
             <h3 style="color: #ffc107; margin-top: 0;">+ Asignar Nueva Membresía</h3>
-            <form action="/agregar_membresia" method="POST">
-                <input type="number" name="idSocio" placeholder="ID del Socio" required style="width: 100px;">
+            <form action="/agregar_membresia" method="POST" style="display: flex; flex-wrap: wrap; gap: 10px;">
+                <select name="idSocio" required>
+                    <option value="">-- Seleccionar Socio --</option>
+                    {% for s in socios %}
+                    <option value="{{ s.idSocio }}">{{ s.nombre }}</option>
+                    {% endfor %}
+                </select>
                 <select name="tipo">
                     <option value="Mensual">Mensual</option>
                     <option value="Anual">Anual</option>
                     <option value="Premium">Premium</option>
                 </select>
                 <input type="number" step="0.01" name="costo" placeholder="Costo $" required style="width: 100px;">
-                <input type="date" name="fecha_inicio" title="Fecha Inicio">
-                <input type="date" name="fecha_fin" title="Fecha Fin">
+                <input type="date" name="fecha_inicio" required>
+                <input type="date" name="fecha_fin" required>
                 <button type="submit" style="background: #ffc107; color: black; font-weight: bold; border: none; padding: 10px 20px; border-radius: 5px; cursor: pointer;">Asignar</button>
             </form>
         </div>
@@ -45,7 +50,7 @@
             <thead>
                 <tr style="color: #ffc107; text-transform: uppercase; font-size: 0.8rem;">
                     <th>ID</th>
-                    <th>Socio ID</th>
+                    <th>Socio</th>
                     <th>Tipo</th>
                     <th>Costo</th>
                     <th>Inicio</th>
@@ -54,16 +59,16 @@
                 </tr>
             </thead>
             <tbody>
-                {% for m in membresias %}
+                {% for membresia, socio in datos %}
                 <tr style="background-color: #1c1c1c;">
-                    <td style="border-radius: 15px 0 0 15px;">{{ m.idMembresia }}</td>
-                    <td style="font-weight: bold;">{{ m.idSocio }}</td>
-                    <td>{{ m.tipo }}</td>
-                    <td style="color: #ffc107;">${{ m.costo }}</td>
-                    <td>{{ m.fecha_inicio }}</td>
-                    <td>{{ m.fecha_fin }}</td>
+                    <td style="border-radius: 15px 0 0 15px;">{{ membresia.idMembresia }}</td>
+                    <td style="font-weight: bold;">{{ socio.nombre }}</td>
+                    <td>{{ membresia.tipo }}</td>
+                    <td style="color: #ffc107;">${{ membresia.costo }}</td>
+                    <td>{{ membresia.fecha_inicio }}</td>
+                    <td>{{ membresia.fecha_fin }}</td>
                     <td style="border-radius: 0 15px 15px 0;">
-                        <a href="/eliminar_membresia/{{ m.idMembresia }}" onclick="return confirm('¿Eliminar membresía?')" style="color: #ff4d4d; text-decoration: none; font-weight: bold;">Eliminar</a>
+                        <a href="/eliminar_membresia/{{ membresia.idMembresia }}" onclick="return confirm('¿Eliminar membresía?')" style="color: #ff4d4d; text-decoration: none; font-weight: bold;">Eliminar</a>
                     </td>
                 </tr>
                 {% endfor %}
