@@ -20,13 +20,28 @@
         <a href="/" class="btn-dark" style="padding: 10px; text-decoration: none; border-radius: 5px;">Ir al Inicio</a>
         <br><br>
         <table class="table" width="100%">
-            <thead>
-                <tr>
-                    <th>ID</th>
-                    <th>Nombre</th>
-                    <th>Correo</th>
-                </tr>
-            </thead>
+ <thead>
+    <tr>
+        <th>ID</th>
+        <th>Nombre</th>
+        <th>Correo</th>
+        <th>Teléfono</th>
+        <th>Edad</th>
+        <th>Inscripción</th>
+    </tr>
+</thead>
+<tbody>
+    {% for s in socios %}
+    <tr>
+        <td>{{ s.idSocio }}</td>
+        <td>{{ s.nombre }}</td>
+        <td>{{ s.correo }}</td>
+        <td>{{ s.telefono }}</td>
+        <td>{{ s.edad }}</td>
+        <td>{{ s.fecha_inscripcion }}</td>
+    </tr>
+    {% endfor %}
+</tbody>
             <tbody>
                 {% for socio in socios %}
                 <tr>
