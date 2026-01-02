@@ -19,6 +19,16 @@
         <h2>👥 Listado de Socios (Desde ORM)</h2>
         <a href="/" class="btn-dark" style="padding: 10px; text-decoration: none; border-radius: 5px;">Ir al Inicio</a>
         <br><br>
+    <div style="background: #1c1c1c; padding: 20px; border-radius: 15px; border: 1px solid #ffc107; margin-bottom: 30px;">
+        <h3 style="color: #ffc107; margin-top: 0;">+ Registrar Nuevo Socio</h3>
+        <form action="/agregar_socio" method="POST">
+            <input type="text" name="nombre" placeholder="Nombre" required>
+            <input type="email" name="correo" placeholder="Email" required>
+            <input type="text" name="telefono" placeholder="Teléfono">
+            <input type="number" name="edad" placeholder="Edad" style="width: 80px;">
+            <button type="submit" style="background: #ffc107; color: black; font-weight: bold; border: none; padding: 10px 20px; border-radius: 5px; cursor: pointer;">Guardar</button>
+        </form>
+    </div>
         <table class="table" width="100%">
  <thead>
     <tr>
@@ -29,7 +39,7 @@
         <th>Edad</th>
         <th>Inscripción</th>
     </tr>
-</thead>
+</thead>            
 <tbody>
     {% for s in socios %}
     <tr>
