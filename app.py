@@ -4,24 +4,37 @@ import os
 
 app = Flask(__name__)
 
-# --- CONFIGURACIÓN ---
-USER = "4PdfpZzDzZDR2Ds.root"
-PASS = "MHgBPuCbpoq8u853"
-HOST = "gateway01.us-east-1.prod.aws.tidbcloud.com"
+# --- CONFIGURACIÓN DE CONEXIÓN ---
+USER = "TU_USUARIO"
+PASS = "TU_PASSWORD"
+HOST = "TU_HOST"
 DB_NAME = "gym_db"
 
 app.config['SQLALCHEMY_DATABASE_URI'] = f'mysql+pymysql://{USER}:{PASS}@{HOST}:4000/{DB_NAME}'
-app.config['SQLALCHEMY_ENGINE_OPTIONS'] = {"connect_args": {"ssl": {"ca": "/etc/ssl/certs/ca-certificates.crt"}}}
+# Parche SSL para Render/Linux
+app.config['SQLALCHEMY_ENGINE_OPTIONS'] = {
+    "connect_args": {
+        "ssl": {
+            "ca": "/etc/ssl/certs/ca-certificates.crt"
+        }
+    }
+}
 app.config['SQLALCHEMY_TRACK_MODIFICATIONS'] = False
 
 db = SQLAlchemy(app)
 
-# --- MODELOS ---
+# --- MODELOS (ORM) ---
 class Socio(db.Model):
     __tablename__ = 'Socio'
     idSocio = db.Column(db.Integer, primary_key=True)
     nombre = db.Column(db.String(100))
     correo = db.Column(db.String(100))
+
+class Membresia(db.Model):
+    __tablename__ = 'Membresia'
+    idMembresia = db.Column(db.Integer, primary_key=True)
+    tipo = db.Column(db.String(100))
+    costo = db.Column(db.Float)
 
 # --- RUTAS ---
 @app.route('/')
@@ -30,8 +43,13 @@ def index():
 
 @app.route('/socios')
 def ver_socios():
-    lista_socios = Socio.query.all()
-    return render_template('socios.html', socios=lista_socios)
+    lista = Socio.query.all()
+    return render_template('socios.html', socios=lista)
+
+@app.route('/membresias')
+def ver_membresias():
+    lista = Membresia.query.all()
+    return render_template('membresias.html', membresias=lista)
 
 if __name__ == "__main__":
     port = int(os.environ.get("PORT", 5000))
