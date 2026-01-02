@@ -7,7 +7,7 @@
     <style>
         table { width: 100%; border-collapse: separate; border-spacing: 0 12px; }
         th, td { padding: 18px 25px !important; text-align: left; }
-        .form-container { background: #1c1c1c; padding: 20px; border-radius: 15px; border: 1px solid #ffc107; margin-bottom: 30px; }
+        .form-container { background: #1c1c1c; padding: 25px; border-radius: 15px; border: 1px solid #ffc107; margin-bottom: 30px; }
         input { padding: 10px; margin: 5px; border-radius: 5px; border: 1px solid #ffc107; background: #222; color: white; }
     </style>
 </head>
@@ -27,11 +27,12 @@
 
         <div class="form-container">
             <h3 style="color: #ffc107; margin-top: 0;">+ Registrar Nuevo Socio</h3>
-            <form action="/agregar_socio" method="POST">
+            <form action="/agregar_socio" method="POST" style="display: flex; flex-wrap: wrap; gap: 10px;">
                 <input type="text" name="nombre" placeholder="Nombre completo" required>
                 <input type="email" name="correo" placeholder="Correo" required>
                 <input type="text" name="telefono" placeholder="Teléfono">
                 <input type="number" name="edad" placeholder="Edad" style="width: 70px;">
+                <input type="date" name="fecha_inscripcion" required title="Fecha de Inscripción">
                 <button type="submit" style="background: #ffc107; color: black; font-weight: bold; border: none; padding: 10px 20px; border-radius: 5px; cursor: pointer;">Guardar</button>
             </form>
         </div>
@@ -41,6 +42,7 @@
                 <tr style="color: #ffc107; text-transform: uppercase; font-size: 0.8rem;">
                     <th>ID</th>
                     <th>Nombre</th>
+                    <th>Inscripción</th>
                     <th>Correo</th>
                     <th>Teléfono</th>
                     <th>Edad</th>
@@ -52,6 +54,7 @@
                 <tr style="background-color: #1c1c1c;">
                     <td style="border-radius: 15px 0 0 15px;">{{ s.idSocio }}</td>
                     <td style="font-weight: bold;">{{ s.nombre }}</td>
+                    <td>{{ s.fecha_inscripcion }}</td>
                     <td>{{ s.correo }}</td>
                     <td>{{ s.telefono }}</td>
                     <td>{{ s.edad }}</td>
