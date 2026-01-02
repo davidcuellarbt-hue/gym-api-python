@@ -24,17 +24,27 @@ app.config['SQLALCHEMY_TRACK_MODIFICATIONS'] = False
 db = SQLAlchemy(app)
 
 # --- MODELOS (ORM) ---
+# Dentro de app.py, actualiza tus modelos si las columnas existen en SQL:
+
+# --- MODELOS (Asegúrate de que los nombres coincidan con TiDB) ---
+
 class Socio(db.Model):
     __tablename__ = 'Socio'
     idSocio = db.Column(db.Integer, primary_key=True)
     nombre = db.Column(db.String(100))
     correo = db.Column(db.String(100))
+    telefono = db.Column(db.String(20))
+    edad = db.Column(db.Integer)
+    fecha_inscripcion = db.Column(db.Date) # O db.String si lo guardaste como texto
 
 class Membresia(db.Model):
     __tablename__ = 'Membresia'
     idMembresia = db.Column(db.Integer, primary_key=True)
     tipo = db.Column(db.String(100))
     costo = db.Column(db.Float)
+    fecha_inicio = db.Column(db.Date)
+    fecha_fin = db.Column(db.Date)
+    idSocio = db.Column(db.Integer, db.ForeignKey('Socio.idSocio'))
 
 # --- RUTAS ---
 @app.route('/')
@@ -54,4 +64,5 @@ def ver_membresias():
 if __name__ == "__main__":
     port = int(os.environ.get("PORT", 5000))
     app.run(host='0.0.0.0', port=port)
+
 
