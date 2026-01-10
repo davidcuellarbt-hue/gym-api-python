@@ -1,1 +1,122 @@
+/* ===== Tema negro con amarillo (Bootstrap personalizado) ===== */
 
+body {
+  background-color: #121212;
+  color: #f8f9fa;
+  font-family: "Segoe UI", Roboto, Arial, sans-serif;
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+}
+
+/* --- Navbar --- */
+.navbar {
+  background-color: #ffc107 !important; /* Amarillo */
+  border-bottom: 3px solid #000;
+}
+.navbar-brand {
+  font-weight: 700;
+  color: #000 !important;
+}
+.navbar-nav .nav-link {
+  color: #000 !important;
+  font-weight: 500;
+  transition: 0.2s;
+}
+.navbar-nav .nav-link:hover {
+  color: #333 !important;
+  text-decoration: underline;
+}
+
+/* --- Contenedor principal --- */
+.container {
+  flex: 1;
+  padding: 40px 20px;
+}
+
+/* --- Títulos --- */
+h1, h2, h3 {
+  color: #ffc107;
+  text-shadow: 1px 1px 3px rgba(255, 255, 0, 0.3);
+  margin-bottom: 20px;
+}
+h2 {
+  border-bottom: 2px solid #ffc107;
+  padding-bottom: 6px;
+}
+
+/* --- Botones --- */
+.btn-warning {
+  background-color: #ffc107;
+  border-color: #e0a800;
+  color: #000;
+  font-weight: 600;
+}
+.btn-warning:hover {
+  background-color: #e0a800;
+  color: #000;
+}
+.btn-dark {
+  background-color: #000;
+  border-color: #222;
+  color: #ffc107;
+  font-weight: 600;
+}
+.btn-dark:hover {
+  background-color: #1a1a1a;
+}
+
+/* --- Formularios --- */
+form {
+  background-color: #1c1c1c;
+  padding: 20px;
+  border-radius: 12px;
+  box-shadow: 0 4px 10px rgba(255, 255, 0, 0.1);
+}
+label {
+  color: #ffc107;
+  margin-top: 10px;
+  font-weight: 500;
+}
+input, select, textarea {
+  background-color: #121212;
+  border: 1px solid #ffc107;
+  color: #f8f9fa;
+  border-radius: 8px;
+  padding: 8px 10px;
+}
+input:focus, select:focus, textarea:focus {
+  outline: none;
+  border-color: #ffe066;
+  box-shadow: 0 0 6px #ffc107;
+}
+
+/* --- Tablas --- */
+.table {
+  color: #f8f9fa;
+  background-color: #1c1c1c;
+  border-radius: 10px;
+  overflow: hidden;
+}
+.table thead {
+  background-color: #ffc107;
+  color: #000;
+  font-weight: 600;
+}
+.table tbody tr:hover {
+  background-color: rgba(255, 193, 7, 0.15);
+}
+.table td, .table th {
+  border-color: rgba(255, 255, 255, 0.1);
+}
+
+/* --- Footer --- */
+footer {
+  text-align: center;
+  padding: 12px;
+  background-color: #000;
+  color: #ffc107;
+  font-size: 14px;
+  border-top: 2px solid #ffc107;
+  margin-top: auto;
+}
