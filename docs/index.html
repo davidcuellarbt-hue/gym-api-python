@@ -1,1 +1,69 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <title>Panel del Sistema del Gimnasio</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/estilo.css') }}">
+    <style>
+        /* Ajuste extra para las cards de la imagen */
+        .cards {
+            display: grid;
+            grid-template-columns: repeat(2, 300px);
+            justify-content: center;
+            gap: 20px;
+            margin-top: 30px;
+        }
+    .card {
+        background-color: #ffc107;
+        color: #000; /* Letras negras */
+        padding: 30px;
+        border-radius: 15px;
+        text-decoration: none;
+        border: 2px solid #000;
+        text-align: center;
+        transition: 0.3s;
+    }
+    .card h3, .card p { color: #000 !important; margin: 5px 0; }
+    .card:hover { transform: scale(1.05); background-color: #e0a800; }
+    table {
+        width: 100%;
+        border-collapse: separate; 
+        border-spacing: 0 10px; /* Espacio entre filas */
+    }
+    th, td {
+        padding: 15px 20px; /* Esto separa el texto de los bordes */
+        text-align: left;
+    }
+    </style>
+</head>
+<body>
+    <nav style="background-color: #ffc107; width: 100%; padding: 15px 0; border-bottom: 3px solid #000; display: flex; justify-content: space-around; align-items: center; margin: 0;">
+    <div style="color: #000; font-weight: bold; font-size: 1.2rem;">Panel del Sistema del Gimnasio</div>
+    <div style="display: flex; gap: 20px;">
+        <a href="/" style="color: #000; text-decoration: none; font-weight: bold;">Inicio</a>
+        <a href="/socios" style="color: #000; text-decoration: none; font-weight: bold;">Socios</a>
+        <a href="/membresias" style="color: #000; text-decoration: none; font-weight: bold;">Membresías</a>
+        <span style="color: #000; font-weight: bold; opacity: 0.7;">Cerrar sesión</span>
+    </div>
+</nav>
 
+    <div class="container" style="text-align: center;">
+        <h1 style="margin-top: 50px; font-weight: bold; color: #fff;">Bienvenido al Panel del Gimnasio</h1>
+        
+        <section class="cards">
+            <a class="card" href="/socios">
+                <h3>Socios</h3>
+                <p style="color: #888;">Gestión completa de socios</p>
+            </a>
+            <a class="card" href="/membresias">
+                <h3>Membresías</h3>
+                <p style="color: #888;">Crear y listar membresías</p>
+            </a>
+            <div class="card" style="opacity: 0.4;"><h3>Entrenadores</h3><p>Internos y externos</p></div>
+            <div class="card" style="opacity: 0.4;"><h3>Asignaciones</h3><p>Asignar entrenadores</p></div>
+        </section>
+    </div>
+
+    <footer>© 2025 Proyecto Base de Datos hecho por Teo xd</footer>
+</body>
+</html>
