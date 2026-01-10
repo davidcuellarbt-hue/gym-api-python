@@ -2,44 +2,49 @@
 <html lang="es">
 <head>
     <meta charset="UTF-8">
-    <title>Gestión de Socios (Demo)</title>
+    <title>Gestión de Socios</title>
     <link rel="stylesheet" href="css/estilo.css">
 </head>
-<body style="margin: 0; background-color: #121212; color: white; font-family: sans-serif;">
-    <nav style="background-color: #ffc107; width: 100%; padding: 15px 0; border-bottom: 3px solid #000; display: flex; justify-content: space-around; align-items: center;">
-        <div style="color: #000; font-weight: bold; font-size: 1.2rem;">Panel del Sistema</div>
-        <div style="display: flex; gap: 20px;">
-            <a href="index.html" style="color: #000; text-decoration: none; font-weight: bold;">Inicio</a>
-            <a href="socios.html" style="color: #000; text-decoration: none; font-weight: bold;">Socios</a>
-            <a href="membresias.html" style="color: #000; text-decoration: none; font-weight: bold;">Membresías</a>
-        </div>
-    </nav>
+<body>
+    <header class="navbar">
+        <div class="logo">Panel del Sistema del Gimnasio</div>
+        <nav>
+            <a href="index.html">Inicio</a>
+            <a href="socios.html">Socios</a>
+            <a href="membresias.html">Membresías</a>
+        </nav>
+    </header>
 
-    <div style="max-width: 1100px; margin: 40px auto; padding: 0 20px;">
-        <h1 style="color: #ffc107;">👥 Gestión de Socios</h1>
+    <div class="content-container">
+        <h1 class="section-title">Gestión de Socios</h1>
 
-        <div style="background-color: #1c1c1c; padding: 25px; border-radius: 15px; margin-bottom: 40px; border: 1px solid #333;">
-            <h3 style="margin-top: 0; color: #ffc107;">Registrar Nuevo Socio</h3>
-            <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(200px, 1fr)); gap: 15px;">
-                <input type="text" placeholder="Nombre completo" style="padding: 10px; border-radius: 5px; border: 1px solid #444; background: #2a2a2a; color: white;">
-                <input type="email" placeholder="Correo electrónico" style="padding: 10px; border-radius: 5px; border: 1px solid #444; background: #2a2a2a; color: white;">
-                <input type="text" placeholder="Teléfono" style="padding: 10px; border-radius: 5px; border: 1px solid #444; background: #2a2a2a; color: white;">
-                <button style="padding: 10px; border-radius: 5px; background: #ffc107; color: black; font-weight: bold; border: none; cursor: pointer;">Guardar Socio</button>
+        <div class="form-container">
+            <h3>+ Registrar Nuevo Socio</h3>
+            <div class="form-row">
+                <input type="text" placeholder="Nombre completo">
+                <input type="text" placeholder="Correo">
+                <input type="text" placeholder="Teléfono">
+                <input type="number" placeholder="Edad" style="width: 80px;">
+                <input type="date">
+                <button class="btn-save">Guardar</button>
             </div>
         </div>
-        
-        <table style="width: 100%; border-collapse: separate; border-spacing: 0 10px;">
+
+        <table class="custom-table">
             <thead>
-                <tr style="color: #888; text-align: left; font-size: 0.9rem;">
-                    <th>ID</th><th>NOMBRE</th><th>CORREO</th><th>ACCIONES</th>
+                <tr>
+                    <th>ID</th><th>NOMBRE</th><th>INSCRIPCIÓN</th><th>CORREO</th><th>TELÉFONO</th><th>EDAD</th><th>ACCIONES</th>
                 </tr>
             </thead>
             <tbody>
-                <tr style="background-color: #1c1c1c;">
-                    <td style="padding: 15px; border-radius: 10px 0 0 10px;">101</td>
-                    <td style="padding: 15px; font-weight: bold;">Juan Pérez</td>
-                    <td style="padding: 15px;">juan@ejemplo.com</td>
-                    <td style="padding: 15px; border-radius: 0 10px 10px 0; color: #ff4d4d;">Eliminar</td>
+                <tr>
+                    <td>1</td><td>Teo Cuellar Betancourt</td><td>2025-11-17</td><td>teo@gym.com</td><td>5512345678</td><td>22</td><td class="delete-link">Eliminar</td>
+                </tr>
+                <tr>
+                    <td>2</td><td>Rodrigo Quesada Ramirez</td><td>2025-10-05</td><td>rodrigo@gym.com</td><td>5598765432</td><td>28</td><td class="delete-link">Eliminar</td>
+                </tr>
+                <tr>
+                    <td>3</td><td>Carlos Hernandez Mendoza</td><td>2025-09-20</td><td>carlos@gym.com</td><td>5544332211</td><td>35</td><td class="delete-link">Eliminar</td>
                 </tr>
             </tbody>
         </table>
