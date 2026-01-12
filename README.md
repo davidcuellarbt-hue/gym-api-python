@@ -27,7 +27,7 @@ Incluye autenticación, dashboard, vistas estáticas para GitHub Pages y API fun
 ---
 
 ## 📂 Estructura del proyecto
-
+```
 gym-api-python/ <-- Directorio Raíz
 │
 ├── app.py <-- Controlador Principal (Entry Point)
@@ -51,7 +51,7 @@ gym-api-python/ <-- Directorio Raíz
 └── css/
 └── estilo.css
 
-
+```
 
 
 ---
